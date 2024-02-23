@@ -10,6 +10,9 @@ class TaskController {
 			elseif($method == 'POST') {
 				echo 'create';
 			}
+			else {
+				$this->respondMethodNotAllowed("GET, POST");
+			}
 		}
 		else {
 			switch ($method) {
@@ -26,11 +29,15 @@ class TaskController {
 					break;
 				
 				default:
-					// code...
-					break;
+					$this->respondMethodNotAllowed("GET, PATCH, DELETE");
 			}
 		}
+	}
 
+
+	private function respondMethodNotAllowed(string $allowed_methods) : void {
+		http_response_code(405);
+		header("Allow: $allowed_methods");
 	}
 
 }
