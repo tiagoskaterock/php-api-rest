@@ -24,9 +24,10 @@ The project consists of creating a REST API in PHP, using the principles and bes
 
 1. **Prerequisites**: Make sure you have the PHP environment set up on your machine.
 2. **Clone the Repository**: Clone this repository to your local machine.
-3. **Configuration**: Set up the environment according to the course instructions.
-4. **Run the API**: Start the local server and run the API.
-5. **Test**: Use tools like Postman to test the API endpoints.
+3. **Import the database**: Database in db.sql.
+4. **Configuration**: Set up the environment according to the course instructions.
+5. **Run the API**: Start the local server and run the API.
+6. **Test**: Use tools like Postman to test the API endpoints.
 
 ## Technologies Used
 
