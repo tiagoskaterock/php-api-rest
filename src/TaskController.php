@@ -2,7 +2,7 @@
 
 class TaskController {
 
-	function processRequest($method, $id) {
+	function processRequest(string $method, ?string $id) : void {
 		if ($id === null) {
 			if($method == 'GET') {
 				echo 'index';
