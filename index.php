@@ -19,6 +19,10 @@ if ($resource != 'tasks') {
 
 header("Content-type: application/json; charset=UTF-8");
 
+$database = new Database("localhost", "php_api", "tiago", "12345678");
+
+$database->getConnection();
+
 $controller = new TaskController();
 
 $controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
