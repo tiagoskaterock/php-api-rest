@@ -11,7 +11,15 @@ class TaskGateway {
 	function getAll() : array {
 		$sql = "SELECT * FROM tasks ORDER BY NAME";
 		$stmt = $this->conn->query($sql);
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+		$data = [];
+
+		while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$row['is_completed'] = (bool) $row['is_completed'];
+			$data[] = $row;
+		}
+
+		return $data;
 	}
 
 }
