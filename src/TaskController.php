@@ -22,7 +22,7 @@ class TaskController {
 		else {
 			switch ($method) {
 				case 'GET':
-					echo 'show ' . $id;
+					echo json_encode($this->gateway->getOne($id));
 					break;
 
 				case 'PATCH':
