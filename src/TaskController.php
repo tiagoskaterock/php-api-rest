@@ -9,6 +9,8 @@ class TaskController {
 
 	function processRequest(string $method, ?string $id) : void {
 		if ($id === null) {
+
+			// get all records
 			if($method == 'GET') {
 				echo json_encode($this->gateway->getAll());
 			}
@@ -20,7 +22,17 @@ class TaskController {
 			}
 		}
 		else {
+
+			$task = $this->gateway->getOne($id);
+
+			if ($task === false) {
+				$this->respondNotFound($id);
+				return;
+			}
+
 			switch ($method) {
+
+				// get single record
 				case 'GET':
 					echo json_encode($this->gateway->getOne($id));
 					break;
@@ -43,6 +55,12 @@ class TaskController {
 	private function respondMethodNotAllowed(string $allowed_methods) : void {
 		http_response_code(405);
 		header("Allow: $allowed_methods");
+	}
+
+
+	private function respondNotFound(string $id) : void {
+		http_response_code(404);
+		echo json_encode(["message" => "Task with id $id not found."]);
 	}
 
 }
