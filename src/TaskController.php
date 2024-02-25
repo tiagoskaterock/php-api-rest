@@ -2,6 +2,11 @@
 
 class TaskController {
 
+	function __construct(private TaskGateway $gateway) {
+
+	}
+
+
 	function processRequest(string $method, ?string $id) : void {
 		if ($id === null) {
 			if($method == 'GET') {

@@ -19,6 +19,15 @@ if ($resource != 'tasks') {
 
 header("Content-type: application/json; charset=UTF-8");
 
-$controller = new TaskController();
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$database = new Database($_ENV['DB_HOST'], $_ENV['DB_NAME'], $_ENV['DB_USER'], $_ENV['DB_PASSWORD']);
+
+$task_gateway = new TaskGateway($database);
+
+$controller = new TaskController($task_gateway);
+
+$database->getConnection();
 
 $controller->processRequest($_SERVER['REQUEST_METHOD'], $id);
