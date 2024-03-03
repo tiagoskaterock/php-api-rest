@@ -2,6 +2,7 @@
 
 require "bootstrap.php";
 
+set_error_handler("ErrorHandler::hanldeError");
 set_exception_handler("ErrorHandler::handleException");
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
